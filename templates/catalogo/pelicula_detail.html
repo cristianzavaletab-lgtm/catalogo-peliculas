@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ pelicula.titulo }} - Catálogo de Películas{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        {% if pelicula.cartel %}
+        <img src="{{ pelicula.cartel.url }}" alt="{{ pelicula.titulo }}" class="img-fluid rounded">
+        {% else %}
+        <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 400px;">
+            <span class="text-muted">Sin imagen</span>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">{{ pelicula.titulo }}</h1>
+            </div>
+            <div class="card-body">
+                <p><strong>Año:</strong> {{ pelicula.año }}</p>
+                <p><strong>Género:</strong> {{ pelicula.genero }}</p>
+                <p><strong>Sinopsis:</strong></p>
+                <p class="lead">{{ pelicula.sinopsis }}</p>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group">
+                    <a href="{% url 'pelicula_update' pelicula.pk %}" class="btn btn-warning">✏️ Editar</a>
+                    <a href="{% url 'pelicula_delete' pelicula.pk %}" class="btn btn-danger">🗑️ Eliminar</a>
+                    <a href="{% url 'pelicula_list' %}" class="btn btn-secondary">← Volver al Listado</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

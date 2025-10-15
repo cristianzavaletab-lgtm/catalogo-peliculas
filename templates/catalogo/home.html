@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4">Bienvenido al Catálogo de Películas</h1>
+        <p class="lead">Sistema CRUD desarrollado con Django para gestionar películas y géneros</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🎭 Gestión de Géneros</h5>
+                        <p class="card-text">Administra los diferentes géneros cinematográficos</p>
+                        <a href="{% url 'genero_list' %}" class="btn btn-primary">Ver Géneros</a>
+                        <a href="{% url 'genero_create' %}" class="btn btn-success">Nuevo Género</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🎬 Gestión de Películas</h5>
+                        <p class="card-text">Administra el catálogo completo de películas</p>
+                        <a href="{% url 'pelicula_list' %}" class="btn btn-primary">Ver Películas</a>
+                        <a href="{% url 'pelicula_create' %}" class="btn btn-success">Nueva Película</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

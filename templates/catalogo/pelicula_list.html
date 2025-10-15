@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Películas - Catálogo de Películas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Catálogo de Películas</h1>
+    <a href="{% url 'pelicula_create' %}" class="btn btn-success">🎬 Nueva Película</a>
+</div>
+
+<div class="row">
+    {% for pelicula in peliculas %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+            {% if pelicula.cartel %}
+            <img src="{{ pelicula.cartel.url }}" class="card-img-top card-img-custom" alt="{{ pelicula.titulo }}">
+            {% else %}
+            <div class="card-img-top card-img-custom bg-light d-flex align-items-center justify-content-center">
+                <span class="text-muted">Sin imagen</span>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ pelicula.titulo }}</h5>
+                <p class="card-text">
+                    <strong>Año:</strong> {{ pelicula.año }}<br>
+                    <strong>Género:</strong> {{ pelicula.genero }}<br>
+                    <strong>Sinopsis:</strong> 
+                    <span class="sinopsis-preview">
+                        {{ pelicula.sinopsis|truncatewords:20 }}
+                    </span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group w-100">
+                    <a href="{% url 'pelicula_detail' pelicula.pk %}" class="btn btn-info btn-sm">👁️ Ver</a>
+                    <a href="{% url 'pelicula_update' pelicula.pk %}" class="btn btn-warning btn-sm">✏️ Editar</a>
+                    <a href="{% url 'pelicula_delete' pelicula.pk %}" class="btn btn-danger btn-sm">🗑️ Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4>No hay películas registradas</h4>
+            <p>Comienza agregando la primera película.</p>
+            <a href="{% url 'pelicula_create' %}" class="btn btn-primary">Agregar Primera Película</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary">← Volver al Inicio</a>
+</div>
+{% endblock %}
