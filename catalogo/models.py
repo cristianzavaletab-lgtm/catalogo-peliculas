@@ -13,7 +13,7 @@ class Genero(models.Model):
 class Pelicula(models.Model):
     titulo = models.CharField(max_length=200)
     sinopsis = models.TextField()
-    cartel = models.ImageField(upload_to='peliculas/')
+    cartel = models.CharField(max_length=500)
     año = models.IntegerField()
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
     
