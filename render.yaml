@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: catalogo-peliculas
+    name: catalogo-peliculas-cristian
     env: python
     plan: free
     branch: main
