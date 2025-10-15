@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: catalogo-peliculas
+    env: python
+    plan: free
+    branch: main
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn peliculas_project.wsgi:application"
+    pythonVersion: "3.9.18"
